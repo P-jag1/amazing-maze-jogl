@@ -52,10 +52,10 @@ public class MazeApp extends KeyAdapter implements GLEventListener {
 	private static JFrame frame;
 	private static GLCanvas canvas;
 
-	//vytvoøení bludištì
+	// maze creation
 	public void setupMaze(GLCanvas canvas) {	
-		//pokud ho vytváøíme poprvé
-		//chceme vytvoøit pouze jeden timer
+		// first time creation
+		// only one timer
 		if(firstTimeSetup) {
 			rotAngle = 0;
 			helpRotAngle = 0;
@@ -64,8 +64,8 @@ public class MazeApp extends KeyAdapter implements GLEventListener {
 			diaFinish.setLocationRelativeTo(frame);
 			diaEnd.setLocationRelativeTo(frame);
 		}
-		//interakce s GUI
-		//pokud uživatel vybral možnost výbìru levelu
+		// interaction with GUI
+		// user choose level
 		if(diaStart.isLevelOk()) {
 			if(diaStart.getDiaSel().getLevel() == 0) {
 				System.exit(0);
@@ -74,8 +74,9 @@ public class MazeApp extends KeyAdapter implements GLEventListener {
 				diaStart.setLevelOk(false);
 			}
 		}
-		//podle aktuálního levelu se vykreslí pøíslušná maze
-		//získají se poèáteèní pozice hráèe
+		// maze creation from selected level
+		// set player position
+		// TO-DO: improve the selection implementation
 		if(level == 1) {
 			maze = new Maze("Maze1.txt", diaEnd);
 			positionX = maze.getCurrentX() + 0.5f;
@@ -96,15 +97,13 @@ public class MazeApp extends KeyAdapter implements GLEventListener {
 			helpRotAngle = 0;
 		}
 	}
-	//timer, který nám pøeklesluje canvas
+	// timer which redraws the canvas
 	private void setTimer(GLCanvas canvas) {
-		//hodnota, která se bude pøièítat k pohybu hráèe
 		float adjust = 0.01f;
-		//inicializace timeru
+		// timer init
 		new Timer().scheduleAtFixedRate(new TimerTask() {
 			public void run() {
-				//hlídáme kdy hrá došel na konec kola
-				//podle jeho rozhodnutí poté vykonáme urèitou akci
+				// end of round
 				if(diaEnd.isEndOk()) {
 					System.exit(0);
 				} else if(diaEnd.isNextLevel()) {
@@ -133,17 +132,15 @@ public class MazeApp extends KeyAdapter implements GLEventListener {
 						setupMaze(canvas);
 					}
 				}
-				//volání metod pro plynulý posun hráèe
+				// move in the game
 				AdjustX(adjust);
 				AdjustZ(adjust);
 				AdjustRotation();
 				
-				//nakonec pøekreslíme
+				// redraw
 				canvas.repaint();
 			}
-			//metoda pro zmìnu rotace
-			//vždy se pøièíta a odeèíta od rotací podle smìru otáèení
-			//opakuje se až do doby kdy rotace není opìt nula tzn. že hráè se v danou chvíli netoèí
+			// change of rotation
 			private void AdjustRotation() {
 				
 				if (helpRotAngle > 0) {
@@ -155,9 +152,7 @@ public class MazeApp extends KeyAdapter implements GLEventListener {
 					helpRotAngle++;
 				}
 			}
-			//metoda pro zmìnu souøadnice x
-			//získáme aktualní souøadnici x
-			//opakovanì pøíèítáme/odeèítáme hodnotu offset hodnotu podle místa kam se hráè má pohnout
+			// change of x
 			private void AdjustX(float offset) {
 				float locationX = maze.getCurrentX() + 0.5f;
 
@@ -173,7 +168,7 @@ public class MazeApp extends KeyAdapter implements GLEventListener {
 					positionX -= offset;
 				}
 			}
-			//metoda pro zmìnu souøadnice z
+			//change of z
 			private void AdjustZ(float offset) {
 				float locationZ = maze.getCurrentZ() - 0.5f;
 				
@@ -189,7 +184,7 @@ public class MazeApp extends KeyAdapter implements GLEventListener {
 					positionZ -= offset;
 				}
 			}
-			//nastavení intervalu opakování
+			// interval setup
 		}, 1000/60, 1000/60);
 	}
 	
@@ -199,7 +194,7 @@ public class MazeApp extends KeyAdapter implements GLEventListener {
 		
 		gl.glClearColor(0.0f, 0.5f, 1.0f, 0.5f);
 		gl.glEnable(GL2.GL_DEPTH_TEST);
-		//tvorba textur
+		// texture creation
 		Textures.init(gl);
 	}
 
@@ -258,7 +253,7 @@ public class MazeApp extends KeyAdapter implements GLEventListener {
 	public void dispose(GLAutoDrawable drawable) {
 		
 	}	
-	//key listenery
+	// key listeners
 	@Override
 	public void keyReleased(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_A) {
@@ -317,7 +312,7 @@ public class MazeApp extends KeyAdapter implements GLEventListener {
 	
 	public static void main(String[] args) {
 		frame = new JFrame("Amazing Maze");
-		// nastavení OpenGL version2
+		// OpenGL setup
 		GLProfile profile = GLProfile.get(GLProfile.GL2);
 		GLCapabilities capabilities = new GLCapabilities(profile);
 		capabilities.setRedBits(8);
@@ -325,7 +320,7 @@ public class MazeApp extends KeyAdapter implements GLEventListener {
 		capabilities.setGreenBits(8);
 		capabilities.setAlphaBits(8);
 		capabilities.setDepthBits(24);
-		// tvorba canvas
+		// canvas creation
 		canvas = new GLCanvas(capabilities);
 		
         canvas.setSize(CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -334,12 +329,12 @@ public class MazeApp extends KeyAdapter implements GLEventListener {
 		frame.pack();
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);
-		//nastavení ikony
+		// icon setup
 		ImageIcon img = new ImageIcon("texture/icon.jpg");
 		frame.setIconImage(img.getImage());
 		
 		canvas.requestFocusInWindow();
-		//tvorba dialogu pro start
+		// diaStart creation
 		diaGuide = new DialogGuide();
 		diaGuide.setLocationRelativeTo(frame);
 		diaGuide.New();
@@ -359,7 +354,7 @@ public class MazeApp extends KeyAdapter implements GLEventListener {
 		});
 		invokeMaze();
 	}
-	//getry a setry
+	
 	public void setLevel(int level) {
 		this.level = level;
 	}
