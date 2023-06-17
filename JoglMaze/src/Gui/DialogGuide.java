@@ -13,7 +13,7 @@ public class DialogGuide extends JDialog {
 	Button ok = new Button("Ok");
 
 	public DialogGuide() {
-		setModal(true); // modalni rezim okna
+		setModal(true);
 		
 		setTitle("Amazing Maze");
 
@@ -23,7 +23,6 @@ public class DialogGuide extends JDialog {
 		ok.addActionListener(e -> {
 			dispose();
 		});
-		// pridame potrebne komponenty
 
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -31,32 +30,32 @@ public class DialogGuide extends JDialog {
 		c.gridx = 1;
 		c.gridy = 1;
 		c.anchor = GridBagConstraints.CENTER;
-		add(new Label("Vítejte ve høe Amazing Maze."), c);
+		add(new Label("Welcome to Amazing Maze"), c);
 		
 		c.gridx = 1;
 		c.gridy = 2;
 		c.anchor = GridBagConstraints.CENTER;
-		add(new Label("Hra byla vytvoøena jako semestrální projekt do pøedmìtu PGRF2."), c);
+		add(new Label("For Fun Project"), c);
 		
 		c.gridx = 1;
 		c.gridy = 3;
 		c.anchor = GridBagConstraints.CENTER;
-		add(new Label("Postavu ovládáte pomocí W - dopøedu, S - dozadu , A - otoèit se doleva o 90°, D - otoèit se doprava o 90°."), c);
+		add(new Label("Controls W - walk forward, S - walk backward , A - turn left, D - turn rigth."), c);
 		
 		c.gridx = 1;
 		c.gridy = 4;
 		c.anchor = GridBagConstraints.CENTER;
-		add(new Label("Stisknutím klávesy H - Hint se podíváte na blusištì z vrchu"), c);
+		add(new Label("Press H - Hint"), c);
 		
 		c.gridx = 1;
 		c.gridy = 5;
 		c.anchor = GridBagConstraints.CENTER;
-		add(new Label("Stisknutím klávesy Esc otevøete znovu hlavní nabídku"), c);
+		add(new Label("ESC - main menu"), c);
 		
 		c.gridx = 1;
 		c.gridy = 6;
 		c.anchor = GridBagConstraints.CENTER;
-		add(new Label("Cílem hry je najít východ ven z bludištì a pøitom posbírat co nejvíce zlatých cihlièek."), c);
+		add(new Label("Goal of the game is to walk through the maze and collect as many gold bars as possible"), c);
 		
 		c.gridx = 1;
 		c.gridy = 7;

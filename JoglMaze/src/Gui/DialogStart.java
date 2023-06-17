@@ -13,9 +13,9 @@ public class DialogStart extends JDialog {
 	private boolean ok;
 	private boolean levelOk = false;
 	private DialogSelect diaSel = new DialogSelect();
-	Button start = new Button("Zaèít Hru - Pokraèovat ve høe");
-	Button end = new Button("Ukonèit hru");
-	Button load = new Button("Vybrat úrovìò");
+	Button start = new Button("Start Game - Continue");
+	Button end = new Button("End Game");
+	Button load = new Button("Choose level");
 
 	public DialogStart(Component a) {
 		setModal(true);		
@@ -42,7 +42,7 @@ public class DialogStart extends JDialog {
 			dispose();
 		});
 
-		// pridame potrebne komponenty
+		// add components
 
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();

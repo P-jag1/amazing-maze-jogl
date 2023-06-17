@@ -74,9 +74,11 @@ public class MazeApp extends KeyAdapter implements GLEventListener {
 				diaStart.setLevelOk(false);
 			}
 		}
-		// maze creation from selected level
-		// set player position
-		// TO-DO: improve the selection implementation
+		/** maze creation from selected level
+	    set player position
+	    TO-DO: improve the selection implementation 
+	    	   add level 4 
+	    **/
 		if(level == 1) {
 			maze = new Maze("Maze1.txt", diaEnd);
 			positionX = maze.getCurrentX() + 0.5f;

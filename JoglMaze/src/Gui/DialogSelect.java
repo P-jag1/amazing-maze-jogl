@@ -15,7 +15,7 @@ private static final long serialVersionUID = 1L;
 	Button three = new Button("Level 3");
 
 	public DialogSelect() {
-		setModal(true); // modalni rezim okna
+		setModal(true);
 		setTitle("Amazing Maze");
 
 		setResizable(false);
@@ -37,7 +37,6 @@ private static final long serialVersionUID = 1L;
 			dispose();
 		});
 
-		// pridame potrebne komponenty
 
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();

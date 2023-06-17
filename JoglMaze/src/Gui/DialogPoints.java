@@ -14,7 +14,7 @@ private static final long serialVersionUID = 1L;
 	Button ok = new Button("Ok");
 
 	public DialogPoints(int body) {
-		setModal(true); // modalni rezim okna
+		setModal(true); 
 		this.body = body;
 		
 		setTitle("Amazing Maze");
@@ -32,7 +32,7 @@ private static final long serialVersionUID = 1L;
 		c.gridx = 0;
 		c.gridy = 1;
 		c.anchor = GridBagConstraints.CENTER;
-		add(new Label("Podaøilo se vám posbírat " + getBody() +"/10 zlatých cihlièek." ), c);
+		add(new Label("You managed to collect " + getBody() +"/10 of golden bars" ), c);
 		
 		c.gridx = 0;
 		c.gridy = 2;

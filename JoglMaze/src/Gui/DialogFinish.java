@@ -12,7 +12,7 @@ public class DialogFinish extends JDialog {
 	Button end = new Button("Ok");
 
 	public DialogFinish() {
-		setModal(true); // modalni rezim okna
+		setModal(true); 
 		
 		setTitle("Amazing Maze");
 
@@ -22,14 +22,13 @@ public class DialogFinish extends JDialog {
 		end.addActionListener(e -> {
 			System.exit(0);
 		});
-		// pridame potrebne komponenty
 
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
 		c.gridx = 1;
 		c.gridy = 1;
-		add(new Label("Dokonèili jste úspìšnì Amazing Maze. Blahopøejeme!"), c);
+		add(new Label("Congratulations!!"), c);
 		
 		c.gridx = 1;
 		c.gridy = 2;

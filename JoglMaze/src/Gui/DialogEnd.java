@@ -13,12 +13,12 @@ public class DialogEnd extends JDialog {
 	private boolean endOk = false;
 	private boolean nextLevel = false;
 	private boolean replay = false;
-	Button rep = new Button("Zkusit znovu");
-	Button end = new Button("Ukonèit hru");
-	Button con = new Button("Další úrovìò");
+	Button rep = new Button("Try again");
+	Button end = new Button("End Game");
+	Button con = new Button("Next Level");
 
 	public DialogEnd() {
-		setModal(true); // modalni rezim okna
+		setModal(true);
 		
 		setTitle("Amazing Maze");
 
@@ -45,7 +45,7 @@ public class DialogEnd extends JDialog {
 		
 		c.gridx = 0;
 		c.gridy = 1;
-		add(new Label("Dokonèili jste úspìšnì úrovìò. Blahopøejeme!"), c);
+		add(new Label("You found the exit, congratulations!"), c);
 		
 		c.gridx = 1;
 		c.gridy = 1;

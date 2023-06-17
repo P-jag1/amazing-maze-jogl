@@ -12,22 +12,22 @@ public class Polygon {
 	public Polygon() {
 		this.vertices = new ArrayList<Vertex3D>();
 	}
-	//metoda pro vytvoøení polygonu pomocí vertexù
+	// creates polygon using vertex
 	public Polygon(Vertex3D...vertices) {
 		this.vertices = new ArrayList<Vertex3D>();		
 		addVertex(vertices);
 	}
-	//metoda pro pøidání vertexù do seznamu
+	// adds vertices to a list
 	public void addVertex(Vertex3D... vertices) {
 		for (Vertex3D v : vertices) {
 			this.vertices.add(v);
 		}
 	}
-	//metoda pro pøidání jednoho vertexu do seznamu
+	// adds single vertex to a list
 	public void addVertex(float x, float y, float z) {
 		this.vertices.add(new Vertex3D(x, y, z));
 	}
-	//metoda, která bude vykreslovat polygon bez textury
+	// draws polygon without texture
 	public void drawWithoutTexture(GL2 gl) {
 		gl.glBegin(GL2.GL_POLYGON);	
 		for (Vertex3D v : vertices) {
@@ -35,14 +35,14 @@ public class Polygon {
 		}
 		gl.glEnd();
 	}
-	//metoda, která bude vykreslovat polygon s texturou
+	// draws polygon with texture
 	public void drawWithTexture(GL2 gl) {
 		gl.glBegin(GL2.GL_POLYGON);
 		
 		float s = 0;
 		float t = 0;
 		int pom = 0;
-		//pro každý vertex vypoèít souøadnicí textury
+		// coordinates of texture
 		for (Vertex3D v : this.vertices) {
 			if (pom == 0) {
 				s = 0;

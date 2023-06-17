@@ -1,7 +1,7 @@
 package Geometry;
 
 import com.jogamp.opengl.GL2;
-//tøída reprezentující bod se souøadnicemi
+//class which represents vertex
 public class Vertex3D {
 
 	private float x;
@@ -19,7 +19,7 @@ public class Vertex3D {
 		this.y = v.getY();
 		this.z = v.getZ();
 	}
-	//metoda pro vykreslení vertexu
+	//draw vertex method
 	public void drawGlVertex3f(GL2 gl) {
 		gl.glVertex3f(x, y, z);
 	}
