@@ -11,18 +11,17 @@ import Geometry.Vertex3D;
 public abstract class Shape {
 
 	private Vertex3D origin;
-	//sezman pologonù 
 	private List<Polygon> polygons;
 	
 	public Shape(Vertex3D vertex) {
 		this.origin = vertex;
 		this.polygons = new ArrayList<Polygon>();
 	}
-	//metoda pro pøidání polygonu
+
 	public void addPolygon(Polygon surface) {
 			this.polygons.add(surface);
 	}
-	//metoda pro vykreslení seznamu polygonù
+
 	public void draw(GL2 gl) {
 		for (Polygon p : polygons) {
 			p.drawWithTexture(gl);

@@ -16,7 +16,7 @@ public class FloatingBrick extends Shape {
 	public FloatingBrick(Vertex3D vertex) {
 		super(vertex);
 	}
-	//metoda pro vytvoøení cihly
+
 	public void createPlate() {
 		
 		createVertices();
@@ -27,7 +27,6 @@ public class FloatingBrick extends Shape {
 		Polygon p4 = new Polygon(vertices.get(0), vertices.get(2), vertices.get(7), vertices.get(4));
 		Polygon p5 = new Polygon(vertices.get(2), vertices.get(3), vertices.get(6), vertices.get(7));
 		Polygon p6 = new Polygon(vertices.get(4), vertices.get(5), vertices.get(6), vertices.get(7));
-		//pøidání cihly do seznamu
 		addPolygon(p1);
 		addPolygon(p2);
 		addPolygon(p3);
@@ -35,7 +34,7 @@ public class FloatingBrick extends Shape {
 		addPolygon(p5);
 		addPolygon(p6);
 	}
-	//vytvoøí vertexy cihly
+
 	public void createVertices() {
 		
 		vertices = new ArrayList<Vertex3D>();

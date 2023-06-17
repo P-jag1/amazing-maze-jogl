@@ -12,16 +12,14 @@ import com.jogamp.opengl.util.texture.TextureIO;
 import com.jogamp.opengl.util.texture.awt.AWTTextureIO;
 
 public class Textures {
-	//pole pro uložení textur
 	private static Texture[] textures;
-	//pole s naètenými texturami
+
 	public static final String[] TEXTURES = {"dust.jpg", "brick.jpg", "ceiling.jpg", "gold.jpg", "door.jpg"};
 
 	public static void init(GL2 gl) {
 		textures = new Texture[TEXTURES.length];
 		
 		try {
-			//úprava textur
 			for (int i = 0; i <= TEXTURES.length - 1; i++) {
 				File infile = new File("texture/" + TEXTURES[i]); 
 				BufferedImage image = ImageIO.read(infile);

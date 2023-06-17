@@ -7,7 +7,7 @@ import Geometry.Vertex3D;
 import Solid.Surface;
 
 public class Ceiling extends Surface implements Component{
-	//index textury, kterou budeme používat
+	
 	private int textureIndex;
 		
 	public Ceiling(Vertex3D vertex, int textureIndex) {
@@ -17,7 +17,7 @@ public class Ceiling extends Surface implements Component{
 		}
 		
 		public void draw(GL2 gl) {
-			//vykreslení stropu
+			
 			Texture texture = Textures.get(textureIndex);
 			texture.enable(gl);
 			texture.bind(gl);		

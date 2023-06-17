@@ -7,7 +7,7 @@ import Geometry.Vertex3D;
 import Solid.Cube;
 
 public class Wall extends Cube implements Component {
-	//index textury, kterou budeme používat
+
 	private int textureIndex;
 	
 	public Wall(Vertex3D vertex, int textureIndex) {
@@ -18,7 +18,6 @@ public class Wall extends Cube implements Component {
 	
 	@Override
 	public void draw(GL2 gl) {
-		//vykreslení zdi(krychle)
 		Texture texture = Textures.get(textureIndex);
 		texture.enable(gl);
 		texture.bind(gl);		

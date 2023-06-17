@@ -40,7 +40,7 @@ public class DialogGuide extends JDialog {
 		c.gridx = 1;
 		c.gridy = 3;
 		c.anchor = GridBagConstraints.CENTER;
-		add(new Label("Controls W - walk forward, S - walk backward , A - turn left, D - turn rigth."), c);
+		add(new Label("Controls W - walk forward, S - walk backward , A - turn left, D - turn right."), c);
 		
 		c.gridx = 1;
 		c.gridy = 4;

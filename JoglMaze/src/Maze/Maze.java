@@ -15,7 +15,6 @@ public class Maze {
 	private boolean view;	
 	private int startZ;
 	private int startX;
-	//atribut urèující orientaci pohledu postavy hráèe
 	private int orientation;
 	int mazeWidth = 0; 
 	int	mazeHeight = 0;
@@ -34,37 +33,31 @@ public class Maze {
 		view = false;
 		this.diaEnd = diaEnd;
 	}
-	//metoda, která namapuje soubor a vytvoøí dvourozmìrné pole, které pøedstavuje mapu bludištì
-	//také nám vytvoøí String naplnìný údaji ze souboru 
+
 	private void createMap(String mazeFile) {
 		BufferedReader input;
-		//String, do kterého se bude ukládát text ze souboru
 		String mazeText = "";
 		String line;
 		int row, column;
 		
 		try {
 			input = new BufferedReader(new FileReader(mazeFile));
-			//pøeètení prvního øádku souboru
 			line = input.readLine();			
 			while (line != null) {
-				//vytvoøení šíøky bludištì
 				mazeWidth = Math.max(line.length(), mazeWidth);
 				
 				if (line.length() > 0) {
-					//výška bludištì se pøièítá podle poètu pøeètených øádkù
 					mazeHeight++;
 					mazeText += line;
 				}
 				
 				if (line != null){
-					//hlídá nám kde konèí a zaèíná další øádek v mazeTextu
 					mazeText += '\n';
 				}
 				
 				line = input.readLine();
 			}
-			//vytvoøení mapy bludištì
+			
 			map = new char[mazeHeight][mazeWidth];
 			pointControl = new int[mazeHeight][mazeWidth];
 			
@@ -80,12 +73,11 @@ public class Maze {
 			System.out.println(ioe.getMessage());
 		}
 	}
-	//metoda pro naplnìní mapy bludištì pøíslušnými hodnotami
+
 	private void fillMapWithValues(String mazeText) {		
 		int row = 0; 
 		int	column = 0;
-		//procházíme text bludištì
-		//pomocí podmínek pøiøadíme každému místu v mapì danný znak
+		
 		for (int i = 0; i <= mazeText.length() - 1; i++) {
 			char pom = mazeText.charAt(i);			
 			if (pom >= '0' && pom <= '2') {
@@ -94,7 +86,6 @@ public class Maze {
 			} else if (pom == ' ') {
 				column++;
 			} else if ("S".indexOf("" + pom) >= 0) {
-				//nastavení poèáteèních hodnot postavy hráèe probìhne až se v prohledávání narazí na znak 'S'
 				startZ = row;
 				startX = column;	
 				column++;
@@ -102,11 +93,11 @@ public class Maze {
 				row++;
 				column = 0;
 			} else {
-				System.err.println("!!!Chyba pøi ètení souboru ve znaku: " + pom + " !!!");
+				System.err.println("!!!Error cannot read: " + pom + " !!!");
 			}
 		}
 	}
-	//metoda pro vytvoøení bludištì (jeho komponent)
+
 	public void createMaze() {
 		maze = new Component[mazeHeight][mazeWidth];
 		maze2 = new Component[mazeHeight][mazeWidth];
@@ -114,10 +105,8 @@ public class Maze {
 		
 		for (int i = mazeHeight - 1, z = 0; i >= 0 ; i--, z--) {
 			for (int x = 0; x <= mazeWidth - 1; x++) {
-				//vytvoøení pùvodního vertexu pro komponentu
 				Vertex3D origin = new Vertex3D(x, 0, z);				
 				char pom = map[i][x];
-				//podle znaku z mapy se rozhodne jaká komponenta se vytvoøí
 				if (pom == '0' || pom == ' ' || pom == '2'){
 					maze[i][x] = new Floor(origin, 0);
 					pointControl[i][x] = 0;
@@ -139,12 +128,12 @@ public class Maze {
 					maze2[i][x] = null;
 					}
 				} else {
-					System.err.println("Chyba v pomocné: " + pom);
+					System.err.println("Error in pom: " + pom);
 				}
 			}
 		}
 	}
-	//metoda sloužící pro vykreslení komponent
+
 	public void draw(GL2 gl) {		
 		for (int i = 0; i < mazeHeight; i++) {
 			for (int j = 0; j < mazeWidth; j++) {
@@ -159,9 +148,7 @@ public class Maze {
 		}
 	}
 	
-	//metody pro zmìnu orientace
-	//rozhas orientace je vždy od 0-3, protože hráè se mùže dívat jenom do 4 smìrù
-	//metody zajišují, že orientace bude vždy v tomto rozhasu
+
 	public void turnLeft() {
 		orientation = (orientation + 4 - 1) % 4;
 	}
@@ -177,14 +164,11 @@ public class Maze {
 	public boolean moveBackward() {
 		return move((orientation + 2) % 4);
 	}
-	//metoda, která podle orientace upraví lokaci hráèe
+
 	private boolean move(int ori) {
 		boolean result = false;
 		System.out.println(orientation);
-		//podle orientace hráèe (èíslo v rozmezí od 0-3) se vyhodnotí jedna z case podmínek
-		//následnì se v pøípadì speciálních polí provede urèitá operace
-		//nakonec se upraví pozice hráèe na další pole v bludišti
-		//probíhá zde i øešení se sbíráním pøedmìtù
+
 		switch (ori) {
 		case 0:
 			if (startZ > 0) {
@@ -296,7 +280,7 @@ public class Maze {
 
 		return result;
 	}
-	//getry a setry
+
 	public int getCurrentZ() { 
 		return startZ - getMazeHeight() + 1; 
 	}
