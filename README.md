@@ -1,8 +1,12 @@
-# maze_jogl
+# Amazing Maze 🎮
 
-Old project of mine, needs a lot of tinkering.
+- Hra bludiště.
 
-Controls: \
-move - W,S,A,D \
-hint - H \
-menu - ESC
+### Controls:
+- move - W, S, A, D
+- hint - H
+- menu - ESC
+
+## Video
+
+- Odkaz: https://www.youtube.com/watch?v=v9FLaYfXaYY
